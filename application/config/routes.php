@@ -38,8 +38,10 @@
 |
 */
 
-$route['default_controller'] = "index_controller";
+$route['default_controller'] = "admin";
 $route['404_override'] = '';
+$route['login'] = "admin/login";
+$route['logout'] = "admin/logout";
 
 
 /* End of file routes.php */

@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html class=" js"><head>
+<title>Roundcube Webmail :: Mail</title>
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE">
+<link rel="shortcut icon" href="http://4geeks.info:2095/cpsess3705814746/3rdparty/roundcube/skins/larry/images/favicon.ico">
+<link rel="stylesheet" type="text/css" href="Roundcube%20Webmail%20::%20Mail_files/styles.css">
+<link rel="stylesheet" type="text/css" href="Roundcube%20Webmail%20::%20Mail_files/mail.css">
+<!--[if IE 9]><link rel="stylesheet" type="text/css" href="skins/larry/svggradients.css?s=1352925028" /><![endif]-->
+<!--[if lte IE 8]><link rel="stylesheet" type="text/css" href="skins/larry/iehacks.css?s=1352925028" /><![endif]-->
+<!--[if lte IE 7]><link rel="stylesheet" type="text/css" href="skins/larry/ie7hacks.css?s=1352925028" /><![endif]-->
+<link rel="stylesheet" type="text/css" href="Roundcube%20Webmail%20::%20Mail_files/jquery-ui-1.css">
+<script type="text/javascript" src="Roundcube%20Webmail%20::%20Mail_files/ui.js"></script>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<script src="Roundcube%20Webmail%20::%20Mail_files/jquery.js" type="text/javascript"></script>
+<script src="Roundcube%20Webmail%20::%20Mail_files/common.js" type="text/javascript"></script>
+<script src="Roundcube%20Webmail%20::%20Mail_files/app.js" type="text/javascript"></script>
+<script src="Roundcube%20Webmail%20::%20Mail_files/list.js" type="text/javascript"></script>
+<script src="Roundcube%20Webmail%20::%20Mail_files/tiny_mce.js" type="text/javascript"></script>
+<script src="Roundcube%20Webmail%20::%20Mail_files/editor.js" type="text/javascript"></script>
+<script type="text/javascript">
+
+var rcmail = new rcube_webmail();
+rcmail.set_env({"task":"mail","x_frame_options":"sameorigin","skin":"larry","keep_alive":60,"action":"compose","comm_path":".\/?_task=mail","date_format":"yy-mm-dd","compose_id":"3398222975100c85a5de96","drafts_mailbox":"INBOX.Drafts","draft_autosave":300,"mailbox":"INBOX","sig_above":true,"top_posting":true,"recipients_separator":",","default_font":"Verdana,Geneva,sans-serif","show_sig":true,"pagecount":0,"current_page":0,"signatures":{"2":{"text":"---\r\nAllan Porras\r\nDirector de Proyectos\r\n4Geeks.info\r\n(+506) 4000-1104","html":"<pre>---\r\nAllan Porras\r\nDirector de Proyectos\r\n4Geeks.info\r\n(+506) 4000-1104<\/pre>"},"1":{"text":"---\r\nEl equipo de 4Geeks","html":"<pre>---\r\nEl equipo de 4Geeks<\/pre>"}},"autocomplete_max":15,"autocomplete_min_length":1,"composebody":"composebody","attachments":[],"max_filesize":52428800,"filesizeerror":"The uploaded file exceeds the maximum size of 50 MB.","request_token":"bfba1a3490fb0380c767ef4256dff73c"});
+rcmail.gui_container("taskbar","taskbar");
+rcmail.gui_container("toolbar","compose-toolbar");
+rcmail.gui_container("composeoptions","composeoptions");
+rcmail.add_label({"loading":"Loading...","servererror":"Server Error!","requesttimedout":"Request timed out","nosubject":"(no subject)","nosenderwarning":"Please enter sender e-mail address.","norecipientwarning":"Please enter at least one recipient.","nosubjectwarning":"The \"Subject\" field is empty. Would you like to enter one now?","cancel":"Cancel","nobodywarning":"Send this message without text?","notsentwarning":"Message has not been sent. Do you want to discard your message?","notuploadedwarning":"Not all attachments have been uploaded yet. Please wait or cancel the upload.","savingmessage":"Saving message...","sendingmessage":"Sending message...","messagesaved":"Message saved to Drafts.","converting":"Removing formatting...","editorwarning":"Switching to the plain text editor will cause all text formatting to be lost. Do you wish to continue?","searching":"Searching...","uploading":"Uploading file...","uploadingmany":"Uploading files...","fileuploaderror":"File upload failed.","sendmessage":"Send message","autocompletechars":"Enter at least $min characters for autocompletion.","autocompletemore":"More matching entries found. Please type more characters."});
+rcmail.register_button('logout', 'rcmbtn101', 'link', '', '', '');
+rcmail.register_button('mail', 'rcmbtn102', 'link', '', 'button-mail button-selected', '');
+rcmail.register_button('addressbook', 'rcmbtn103', 'link', '', 'button-addressbook button-selected', '');
+rcmail.register_button('settings', 'rcmbtn104', 'link', '', 'button-settings button-selected', '');
+rcmail.gui_object('addressbookslist', 'directorylist');
+rcmail.gui_object('contactslist', 'contacts-table');
+rcmail.register_button('add-recipient', 'rcmbtn105', 'link', 'listbutton addto', '', '');
+rcmail.register_button('add-recipient', 'rcmbtn106', 'link', 'listbutton addcc', '', '');
+rcmail.register_button('add-recipient', 'rcmbtn107', 'link', 'listbutton addbcc', '', '');
+rcmail.register_button('firstpage', 'rcmbtn108', 'link', 'icon firstpage', '', '');
+rcmail.register_button('previouspage', 'rcmbtn109', 'link', 'icon prevpage', '', '');
+rcmail.register_button('nextpage', 'rcmbtn110', 'link', 'icon nextpage', '', '');
+rcmail.register_button('lastpage', 'rcmbtn111', 'link', 'icon lastpage', '', '');
+rcmail.register_button('insert-sig', 'rcmbtn113', 'link', 'button insertsig', 'button insertsig pressed', '');
+rcmail.gui_object('messageform', 'form');
+rcmail.register_button('send', 'rcmbtn114', 'input', '', '', '');
+rcmail.register_button('savedraft', 'rcmbtn115', 'input', '', '', '');
+rcmail.register_button('list', 'rcmbtn116', 'input', '', '', '');
+rcmail.gui_object('attachmentlist', 'attachment-list');
+rcmail.gui_object('message', 'message');
+rcmail.gui_object('uploadform', 'uploadformFrm');
+rcmail.register_button('send-attachment', 'rcmbtn118', 'input', '', '', '');
+</script>
+
+<script type="text/javascript" src="Roundcube%20Webmail%20::%20Mail_files/jquery-ui-1.js"></script>
+</head>
+<body>
+
+<div class="minwidth">
+<div id="header">
+<div id="topline">
+	<div class="topleft">
+		<a class="about-link" onclick="UI.show_about(this);return false" id="rcmbtn100" href="#">About</a>
+			</div>
+	<div class="topright">
+	<span class="username">info@4geeks.info</span>
+	<a class="button-logout" id="rcmbtn101" href="http://4geeks.info:2095/cpsess3705814746/3rdparty/roundcube/?_task=logout" onclick="rcmail.command('switch-task','logout');return false">Logout</a>
+	</div>
+</div>
+
+<div id="topnav">
+	<div id="taskbar" class="topright">
+	<a class="button-mail button-selected" id="rcmbtn102" href="http://4geeks.info:2095/cpsess3705814746/3rdparty/roundcube/?_task=mail" onclick="rcmail.command('switch-task','mail');return false"><span class="button-inner">Mail</span></a>
+	<a class="button-addressbook" id="rcmbtn103" href="http://4geeks.info:2095/cpsess3705814746/3rdparty/roundcube/?_task=addressbook" onclick="rcmail.command('switch-task','addressbook');return false"><span class="button-inner">Address Book</span></a>
+	
+	<a class="button-settings" id="rcmbtn104" href="http://4geeks.info:2095/cpsess3705814746/3rdparty/roundcube/?_task=settings" onclick="rcmail.command('switch-task','settings');return false"><span class="button-inner">Settings</span></a>
+	</div>
+	<img src="Roundcube%20Webmail%20::%20Mail_files/roundcube_logo.png" id="toplogo" alt="Logo" border="0">
+</div>
+
+<br style="clear:both">
+</div>
+
+
+
+
+<div id="mainscreen">
+
+<div style="width: 242px;" id="composeview-left">
+
+<!-- inline address book -->
+<div id="compose-contacts" class="uibox listbox">
+<h2 class="boxtitle">Contacts</h2>
+	<ul id="directorylist" class="listing"><li id="rcmli0" class="addressbook"><a href="#list" rel="0" onclick="return rcmail.command('list-adresses','0',this)">Personal Addresses</a></li>
+</ul>
+
+	<div style="top: 65px;" class="scroller withfooter">
+		<table id="contacts-table" class="listing"><tbody></tbody></table>
+
+	</div>
+<div class="boxfooter">
+	<a title="To" class="listbutton addto disabled" id="rcmbtn105" href="#" onclick="return rcmail.command('add-recipient','to',this)"><span class="inner">To+</span></a><a title="Cc" class="listbutton addcc disabled" id="rcmbtn106" href="#" onclick="return rcmail.command('add-recipient','cc',this)"><span class="inner">Cc+</span></a><a title="Bcc" class="listbutton addbcc disabled" id="rcmbtn107" href="#" onclick="return rcmail.command('add-recipient','bcc',this)"><span class="inner">Bcc+</span></a>
+</div>
+<div class="boxpagenav">
+	<a class="icon firstpage disabled" title="Show first page" id="rcmbtn108" href="#" onclick="return rcmail.command('firstpage','',this)">|&lt;</a>
+	<a class="icon prevpage disabled" title="Show previous page" id="rcmbtn109" href="#" onclick="return rcmail.command('previouspage','',this)">&lt;</a>
+	<a class="icon nextpage disabled" title="Show next page" id="rcmbtn110" href="#" onclick="return rcmail.command('nextpage','',this)">&gt;</a>
+	<a class="icon lastpage disabled" title="Show last page" id="rcmbtn111" href="#" onclick="return rcmail.command('lastpage','',this)">&gt;|</a>
+</div>
+</div>
+
+</div>
+
+<div style="left: 254px;" id="composeview-right">
+
+<!-- toolbar -->
+<div id="messagetoolbar" class="fullwidth">
+<div id="mailtoolbar" class="toolbar">
+		<a class="button attach" title="Attach a file" onclick="UI.show_uploadform();return false" id="rcmbtn112" href="#">Attach</a>
+	<a class="button insertsig" title="Insert signature" id="rcmbtn113" href="#" onclick="return rcmail.command('insert-sig','',this)">Signature</a>
+	
+</div>
+</div>
+
+<form target="savetarget" name="form" action="http://4geeks.info:2095/cpsess3705814746/3rdparty/roundcube/?_unlock=loading1359006397785" method="post" id="compose-content" class="uibox">
+<input name="_token" value="bfba1a3490fb0380c767ef4256dff73c" type="hidden">
+
+<!-- message headers -->
+<div id="composeheaders">
+
+<table class="headers-table compose-headers">
+<tbody>
+	<tr>
+		<td class="title"><label for="_from">From</label></td>
+		<td class="editfield">
+			<input name="_task" value="mail" type="hidden"><input name="_action" value="send" type="hidden"><input name="_id" value="3398222975100c85a5de96" type="hidden"><select name="_from" id="_from" tabindex="1" onchange="rcmail.change_identity(this)">
+<option value="2" selected="selected">Allan Porras &lt;alpocr@4geeks.info&gt;</option>
+<option value="1">"4Geeks.info" &lt;info@4geeks.info&gt;</option>
+</select>
+
+			<a href="#identities" onclick="return rcmail.command('identities')" class="iconlink edit">Edit identities</a>
+		</td>
+	</tr><tr>
+		<td class="title top"><label for="_to">To</label></td>
+		<td class="editfield"><textarea autocomplete="off" name="_to" spellcheck="false" id="_to" cols="70" rows="1" tabindex="2">vickyartaviac@gmail.com</textarea></td>
+	</tr><tr id="compose-cc">
+		<td class="title top">
+			<label for="_cc">Cc</label>
+			<a href="#cc" onclick="return UI.hide_header_row('cc');" class="iconbutton cancel" title="Delete">x</a>
+		</td>
+		<td class="editfield"><textarea autocomplete="off" name="_cc" spellcheck="false" id="_cc" cols="70" rows="1" tabindex="3"></textarea></td>
+	</tr><tr id="compose-bcc">
+		<td class="title top">
+			<label for="_bcc">Bcc</label>
+			<a href="#bcc" onclick="return UI.hide_header_row('bcc');" class="iconbutton cancel" title="Delete">x</a>
+		</td>
+		<td colspan="2" class="editfield"><textarea autocomplete="off" name="_bcc" spellcheck="false" id="_bcc" cols="70" rows="1" tabindex="4"></textarea></td>
+	</tr><tr id="compose-replyto">
+		<td class="title top">
+			<label for="_replyto">Reply-To</label>
+			<a href="#replyto" onclick="return UI.hide_header_row('replyto');" class="iconbutton cancel" title="Delete">x</a>
+		</td>
+		<td class="editfield"><input autocomplete="off" name="_replyto" spellcheck="false" id="_replyto" size="70" tabindex="5" type="text"></td>
+	</tr><tr id="compose-followupto">
+		<td class="title top">
+			<label for="_followupto">Followup-To</label>
+			<a href="#followupto" onclick="return UI.hide_header_row('followupto');" class="iconbutton cancel" title="Delete">x</a>
+		</td>
+		<td class="editfield"><input autocomplete="off" name="_followupto" spellcheck="false" id="_followupto" size="70" tabindex="7" type="text"></td>
+	</tr><tr>
+		<td></td>
+		<td class="formlinks">
+			<a href="#cc" onclick="return UI.show_header_row('cc')" id="cc-link" class="iconlink add">Add Cc</a>
+			<a href="#bcc" onclick="return UI.show_header_row('bcc')" id="bcc-link" class="iconlink add">Add Bcc</a>
+			<a href="#reply-to" onclick="return UI.show_header_row('replyto')" id="replyto-link" class="iconlink add">Add Reply-To</a>
+			<a href="#followup-to" onclick="return UI.show_header_row('followupto')" id="followupto-link" class="iconlink add">Add Followup-To</a>
+		</td>
+	</tr><tr>
+		<td class="title"><label for="compose-subject">Subject</label></td>
+		<td class="editfield"><input name="_subject" id="compose-subject" tabindex="8" spellcheck="true" type="text"></td>
+	</tr>
+</tbody>
+</table>
+
+<div id="composebuttons" class="formbuttons">
+	<input class="button mainaction" tabindex="11" id="rcmbtn114" onclick="return rcmail.command('send','',this)" value="Send message" type="button">
+	<input class="button" tabindex="12" id="rcmbtn115" onclick="return rcmail.command('savedraft','',this)" value="Save as draft" type="button">
+	<input class="button" tabindex="13" id="rcmbtn116" onclick="return rcmail.command('list','',this)" value="Cancel" type="button">
+</div>
+
+</div>
+
+<!-- (collapsable) message options -->
+<div id="composeoptionsbox">
+	<span class="composeoption">
+		<label style="cursor: pointer;">Options
+			<a href="#options" id="composeoptionstoggle">&nbsp;</a></label>
+	</span>
+	
+	<div id="composeoptions">
+				<span class="composeoption">
+			<label>Editor type
+				<select name="editorSelector" tabindex="14" onchange="return rcmail_toggle_editor(this, 'composebody', '_is_html')">
+<option value="html">HTML</option>
+<option value="plain" selected="selected">Plain text</option>
+</select>
+</label>
+		</span>
+				<span class="composeoption">
+			<label for="rcmcomposepriority">Priority
+				<select name="_priority" id="rcmcomposepriority">
+<option value="5">Lowest</option>
+<option value="4">Low</option>
+<option value="0" selected="selected">Normal</option>
+<option value="2">High</option>
+<option value="1">Highest</option>
+</select>
+</label>
+		</span>
+		<span class="composeoption">
+			<label><input name="_receipt" id="rcmcomposereceipt" value="1" type="checkbox"> Return receipt</label>
+		</span>
+		<span class="composeoption">
+			<label><input name="_dsn" id="rcmcomposedsn" value="1" type="checkbox"> Delivery status notification</label>
+		</span>
+		<span class="composeoption">
+			<label>Save sent message in <select name="_store_target" style="max-width:12em">
+<option value="">- don't save -</option>
+<option value="INBOX">Inbox</option>
+<option value="INBOX.Drafts">Drafts</option>
+<option value="INBOX.Sent" selected="selected">Sent</option>
+<option value="INBOX.Junk">Junk</option>
+<option value="INBOX.Trash">Trash</option>
+<option value="INBOX.Empleos">Empleos</option>
+<option value="INBOX.Oportunidades">Oportunidades</option>
+<option value="INBOX.Proveedores">Proveedores</option>
+<option value="INBOX.Socios">Socios</option>
+<option value="INBOX.ULATINA">ULATINA</option>
+</select>
+</label>
+		</span>
+		
+	</div>
+</div>
+
+<!-- message compose body -->
+<div style="height: 352px;" id="composeview-bottom">
+	<div id="composebodycontainer">
+		<input name="_draft_saveid" value="9578a3abd865a3b9b9bdadba9cd3a179@4geeks.info" type="hidden"><input name="_draft" value="1" type="hidden"><input name="_is_html" value="0" type="hidden"><textarea style="width: 676px; height: 336px;" name="_message" id="composebody" cols="70" rows="20" tabindex="9">Hola profesora.
+
+Adjunto encontrará el trabajo de investigación acerca de la expresión oral.
+Me disculpo por no presentar bibliografía.Gracias.
+
+---
+Allan Porras
+4Geeks.info
+(+506) 4000-1104</textarea>
+<iframe name="savetarget" src="Roundcube%20Webmail%20::%20Mail_files/blank.html" style="width:0;height:0;border:none;visibility:hidden;"></iframe>
+	</div>
+	<div id="compose-attachments" class="rightcol">
+		<div style="text-align:center; margin-bottom:20px">
+			<input class="button" onclick="UI.show_uploadform();return false" tabindex="10" id="rcmbtn117" value="Attach a file" type="button">
+		</div>
+		<ul id="attachment-list" class="attachmentslist">
+</ul>
+
+	</div>
+</div>
+
+</form>
+
+<div id="mailview-bottom" class="uibox">
+	<div id="message" class="statusbar"><div style="display: none;" class="loading">Searching...</div><div style="display: none;" class="loading">Saving message...</div><div style="display: none;" class="confirmation">Message saved to Drafts.</div><div class="loading">Saving message...</div></div>
+</div>
+
+</div><!-- end mailview-right -->
+
+<div style="left: 245px; top: 0px;" class="splitter splitter-v" unselectable="on" id="composesplitterv"></div></div><!-- end mainscreen -->
+
+</div><!-- end minwidth -->
+
+<div id="upload-dialog" class="propform popupdialog" title="Attach a file">
+	<div id="uploadform"><form id="uploadformFrm" name="uploadform" method="post" enctype="multipart/form-data" action="./">
+<input name="_token" value="bfba1a3490fb0380c767ef4256dff73c" type="hidden"><div><input size="40" name="_attachments[]" multiple="multiple" type="file"></div>
+<div class="hint">Maximum allowed file size is 50 MB</div>
+</form>
+</div>
+
+	<div class="formbuttons">
+		<input class="button mainaction" id="rcmbtn118" onclick="return rcmail.command('send-attachment','',this)" value="Upload" type="button">
+		<input class="button" onclick="UI.show_uploadform()" id="rcmbtn119" value="Cancel" type="button">
+	</div>
+</div>
+
+<div id="spellmenu" class="popupmenu"></div>
+
+<script type="text/javascript">
+
+// UI startup
+var UI = new rcube_mail_ui();
+$(document).ready(function(){
+	UI.set('errortitle', 'An error occurred!');
+	UI.init();
+});
+
+</script>
+
+
+
+<script type="text/javascript">
+
+jQuery.extend(jQuery.ui.dialog.prototype.options.position, {
+                using: function(pos) {
+                    var me = jQuery(this),
+                        offset = me.css(pos).offset(),
+                        topOffset = offset.top - 12;
+                    if (topOffset < 0)
+                        me.css('top', pos.top - topOffset);
+                    if (offset.left + me.outerWidth() + 12 > jQuery(window).width())
+                        me.css('left', pos.left - 12);
+                }
+            });
+$(document).ready(function(){ 
+rcmail.init();
+rcmail_editor_init({"mode":"","lang":"en","skin_path":"skins\/larry","spellcheck":0,"spelldict":0})
+});
+</script>
+
+
+<div style="position: absolute; z-index: 30000; left: 374.8px; top: 217px; display: none;" id="rcmKSearchpane"><ul></ul></div></body></html>

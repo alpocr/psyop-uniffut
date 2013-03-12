@@ -1,0 +1,31 @@
+a{
+	font-size:16px;
+	font-family: 'Open Sans', sans-serif;
+}
+
+body p{
+	font-family: 'Open Sans';
+	font-size: 15px;
+}
+
+.span9{
+	margin-top:70px;
+
+}
+
+.span3 {
+	margin-top: 70px;
+}
+
+
+.hero-unit{
+	padding: 60px 35px 35px 35px;
+
+}
+
+/** FOOTER  */
+
+.footer {
+	/*position: absolute;*/
+	margin-top: 40px;
+}
